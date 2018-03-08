@@ -215,7 +215,7 @@ class TelegramDumper(TelegramClient):
                                                                             id_offset, buffer)
             # when buffer is full, flush it into a temp file
             if len(buffer) >= 1000:
-                with tempfile.TemporaryFile(mode='w+', encoding='utf-8', delete=False) as tf:
+                with tempfile.TemporaryFile(mode='w+', encoding='utf-8') as tf:
                     tf.write(codecs.BOM_UTF8.decode())
                     while len(buffer) > 0:
                         output_total_count += 1
