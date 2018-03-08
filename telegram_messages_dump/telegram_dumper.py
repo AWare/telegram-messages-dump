@@ -71,7 +71,7 @@ class TelegramDumper(TelegramClient):
         # Resolve chat name into id
         peer = self(ResolveUsernameRequest(self.settings.chat_name))
 
-        if peer.chats is None or len(peer.chats) == 0 or peer.users is None or len(peer.users) == 0:
+        if (peer.chats is None or len(peer.chats) == 0) and (peer.users is None or len(peer.users) == 0):
             raise ValueError('Error: failed to resolve chat name into chat_id or user')
 
         if len(peer.chats) == 0:
