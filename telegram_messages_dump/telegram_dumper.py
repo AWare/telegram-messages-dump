@@ -168,9 +168,9 @@ class TelegramDumper(TelegramClient):
                 re_id_str = 'RID={} '.format(str(msg.reply_to_msg_id))
 
             # Format a message log record
-            msg_dump_str = '[{}-{:02d}-{:02d} {:02d}:{:02d}] ID={} {}{}: {}'.format(
+            msg_dump_str = '[{}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}] ID={} {}{}: {}'.format(
                 msg.date.year, msg.date.month, msg.date.day,
-                msg.date.hour, msg.date.minute, msg.id, re_id_str, name,
+                msg.date.hour, msg.date.minute, msg.date.second, msg.id, re_id_str, name,
                 content)
 
             buffer.append(msg_dump_str)
