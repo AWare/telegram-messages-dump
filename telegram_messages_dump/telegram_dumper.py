@@ -242,6 +242,5 @@ class TelegramDumper(TelegramClient):
                         print(line, file=resulting_file, end='')
                 # delete temp file
                 tf.close()
-                os.remove(tf.name)
 
         return output_total_count
