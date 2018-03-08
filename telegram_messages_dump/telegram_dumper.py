@@ -240,7 +240,5 @@ class TelegramDumper(TelegramClient):
                 with codecs.open(tf.name, 'r', 'utf-8') as ctf:
                     for line in ctf.readlines():
                         print(line, file=resulting_file, end='')
-                # delete temp file
-                tf.close()
 
         return output_total_count
