@@ -71,12 +71,15 @@ class TelegramDumper(TelegramClient):
         # Resolve chat name into id
         peer = self(ResolveUsernameRequest(self.settings.chat_name))
 
-        if peer.chats is None or len(peer.chats) == 0:
-            raise ValueError('Error: failed to resolve chat name into chat_id')
+        if peer.chats is None or len(peer.chats) == 0 or peer.users is None or len(peer.users) == 0:
+            raise ValueError('Error: failed to resolve chat name into chat_id or user')
 
-        chat = peer.chats[0]
+        if len(peer.chats) == 0:
+            chat = peer.users[0]
+        else:
+            chat = peer.chats[0]
 
-        sprint('Chat name @{} resolved into channel id={}'.format(self.settings.chat_name, chat.id))
+        sprint('Chat name @{} resolved into id={}'.format(self.settings.chat_name, chat.id))
 
         # Dump history to file
         count = self.dump_messages_in_file(chat)
